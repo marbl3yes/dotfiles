@@ -28,3 +28,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/lates
 tar xf lazygit.tar.gz -C /usr/local/bin lazygit
 rm -rf lazygit.tar.gz
 stow lazygit
+
+# FZF
+nala install fzf -y
