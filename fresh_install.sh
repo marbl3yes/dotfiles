@@ -2,19 +2,26 @@
 
 export LC_ALL=C
 
-# Install nala package manager
+# Nala package manager
 apt install nala -y
 
-# Install stow for managing dot files
+# Stow for managing dot files
 nala install stow -y
 
-# Install curl (needed for fnm)
+# Curl (needed for fnm)
 nala install curl -y
 
-# Install fnm (node version manager)
+# Fnm (node version manager)
 curl -fsSL https://fnm.vercel.app/install | bash
 
-# Install and configure zsh
+# Zsh
 nala install zsh -y
 chsh -s /usr/bin/zsh
 stow zsh
+
+# Lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz -C /usr/local/bin lazygit
+rm -rf lazygit.tar.gz
+stow lazygit
