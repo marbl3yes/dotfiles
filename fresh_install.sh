@@ -11,8 +11,11 @@ nala install stow -y
 # Curl (needed for fnm)
 nala install curl -y
 
-# Fnm (node version manager)
+# FNM (node version manager)
 curl -fsSL https://fnm.vercel.app/install | bash
+
+# SDKMAN (manager for java, maven, etc.)
+curl -s "https://get.sdkman.io" | bash
 
 # Zsh
 nala install zsh -y
