@@ -8,6 +8,9 @@ apt install nala -y
 # Stow for managing dot files
 nala install stow -y
 
+# Tree
+nala install tree -y
+
 # Curl (needed for fnm)
 nala install curl -y
 
