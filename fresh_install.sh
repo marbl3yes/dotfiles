@@ -33,12 +33,12 @@ rm -rf lazygit.tar.gz
 stow lazygit
 
 # FZF
-nala install fzf -y
+# nala install fzf -y
 
 # Neovim
-nala install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
-git clone https://github.com/neovim/neovim.git
-cd neovim
-git checkout release-0.7
-make CMAKE_BUILD_TYPE=Release
-make install
+# nala install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
+# git clone https://github.com/neovim/neovim.git
+# cd neovim
+# git checkout release-0.7
+# make CMAKE_BUILD_TYPE=Release
+# make install
