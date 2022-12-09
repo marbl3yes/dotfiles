@@ -28,6 +28,10 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
+# fnm
+export PATH="/home/sergio-pereira/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
 # Useful Functions
 source "$ZDOTDIR/zsh-functions"
 
