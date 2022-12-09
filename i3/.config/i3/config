@@ -403,3 +403,6 @@ exec_always feh --bg-scale "/home/sergio-pereira/Pictures/pexels-carlos-oliva-35
 
 # Use theme settings from GNOME
 exec --no-startup-id /usr/libexec/gsd-xsettings
+
+# Use picom compositor
+exec_always --no-startup-id picom --experimental-backends -b
