@@ -135,8 +135,8 @@ bindsym $mod+Shift+f exec ~/.config/i3/bin/rofifinder
 
 
 # Enable Print Screen
-#bindsym --release $mod+Print exec gnome-screenshot -i
-bindsym --release $mod+Print exec shutter -s
+bindsym --release $mod+Print exec gnome-screenshot -i
+#bindsym --release $mod+Print exec shutter -s
 
 # kill focused window
 bindsym $mod+q kill
