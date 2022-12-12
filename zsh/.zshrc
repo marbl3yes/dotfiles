@@ -13,8 +13,9 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # completions
-autoload -Uz compinit
 zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+autoload -Uz compinit && compinit
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 # compinit
