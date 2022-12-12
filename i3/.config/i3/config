@@ -323,6 +323,7 @@ for_window [class="Firefox"] move to workspace $ws2
 for_window [class="Code"] move to workspace $ws3
 for_window [class="Foxit Reader"] move to workspace $ws4
 for_window [class="Pcmanfm"] move to workspace $ws4
+for_window [class="(?i)org.gnome.software"] move to workspace $ws4
 for_window [class="VirtualBox"] move to workspace $ws5
 for_window [class="Virt-manager"] move to workspace $ws5
 for_window [class="Skype"] move to workspace $ws6
