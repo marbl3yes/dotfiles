@@ -318,24 +318,22 @@ exec_always --no-startup-id solaar
 
 # Bind App to workspace
 # Check class by using xprop command
-assign [class="terminal"] $ws1
-assign [class="chromium"] $ws2
-assign [class="Firefox"] $ws2
-assign [class="Atom"] $ws3
-assign [class="Code"] $ws3
-assign [class="Foxit Reader"] $ws3
-assign [class="Pcmanfm"] $ws4
-assign [class="VirtualBox"] $ws5
-assign [class="Virt-manager"] $ws5
-assign [class="Skype"] $ws6
-assign [class="mpv"] $ws9
-assign [class="vlc"] $ws9
-assign [class="thunderbird"] $ws7
-assign [class="(?i)libreoffice-startcenter"] $ws8
-assign [class="(?i)soffice"] $ws8
-assign [class="(?i)libreoffice"] $ws8
-assign [class="Solaar"] $ws10
-
+for_window [class="terminal"] move to workspace $ws1
+for_window [class="chromium"] move to workspace $ws2
+for_window [class="Firefox"] move to workspace $ws2
+for_window [class="Code"] move to workspace $ws3
+for_window [class="Foxit Reader"] move to workspace $ws4
+for_window [class="Pcmanfm"] move to workspace $ws4
+for_window [class="VirtualBox"] move to workspace $ws5
+for_window [class="Virt-manager"] move to workspace $ws5
+for_window [class="Skype"] move to workspace $ws6
+for_window [class="thunderbird"] move to workspace $ws7
+for_window [class="(?i)libreoffice-startcenter"] move to workspace $ws8
+for_window [class="(?i)soffice"] move to workspace $ws8
+for_window [class="(?i)libreoffice"] move to workspace $ws8
+for_window [class="mpv"] move to workspace $ws9
+for_window [class="vlc"] move to workspace $ws9
+assign [class="Solaar"] move to workspace $ws10
 
 # Assign to certain workspace
 assign [window_role="browser"] $ws2
