@@ -34,6 +34,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# enable touchpad tapping
+exec xinput set-prop 13 "libinput Tapping Enabled" 1
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -334,7 +337,7 @@ for_window [class="(?i)soffice"] move to workspace $ws8
 for_window [class="(?i)libreoffice"] move to workspace $ws8
 for_window [class="mpv"] move to workspace $ws9
 for_window [class="vlc"] move to workspace $ws9
-assign [class="Solaar"] move to workspace $ws10
+assign [class="Solaar"] $ws10
 
 # Assign to certain workspace
 assign [window_role="browser"] $ws2
