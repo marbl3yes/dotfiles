@@ -84,7 +84,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+i split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+u split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -408,3 +408,7 @@ exec --no-startup-id /usr/libexec/gsd-xsettings
 
 # Use picom compositor
 exec_always --no-startup-id picom --experimental-backends -b
+
+# Start diodon clipboard manager
+exec --no-startup-id /usr/bin/diodon
+bindsym $mod+v exec /usr/bin/diodon
