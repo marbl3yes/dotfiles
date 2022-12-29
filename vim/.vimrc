@@ -75,7 +75,7 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
-let g:coc_node_path='/home/sergio-pereira/.nvm/versions/node/v16.15.0/bin/node'
+let g:coc_node_path="$HOME/.local/share/fnm/node-versions/v16.16.0/installation/bin/node"
 
 " --- Just Some Notes ---
 " :PlugClean :PlugInstall :UpdateRemotePlugins
