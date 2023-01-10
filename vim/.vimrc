@@ -17,13 +17,14 @@ set autoindent
 set mouse=a
 set smarttab
 set softtabstop=4
-colorscheme pablo
+colorscheme default
 
 call plug#begin()
 
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'vim-airline/vim-airline' " Status bar
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ap/vim-css-color'
 Plug 'neoclide/coc.nvim' " Auto Completion
 Plug 'ryanoasis/vim-devicons'
@@ -94,6 +95,7 @@ let g:vim_mardown_fenced_languages=['tsx=typescriptreact']
 " air-line
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='google_dark'
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
