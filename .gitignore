@@ -1,0 +1,17 @@
+.DS_Store
+
+# ZSH
+.zshrc.local
+.zsh_history
+.zcompdump-*
+
+# Vim
+Session.vim
+.vim/bundle/
+.vimrc_sample
+.vim/ftdetect/Dockerfile.vim
+.vim/syntax/Dockerfile.vim
+.vim/snippets/
+
+# NeoVim
+nvim/.config/nvim/plugin/packer_compiled.lua
