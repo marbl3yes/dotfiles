@@ -67,6 +67,9 @@ curl -sS https://starship.rs/install.sh | sh
 # Install fzf
 nala install -y fzf
 
+# Install exa
+nala install -y exa
+
 # Install Lazygit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
