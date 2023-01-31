@@ -34,6 +34,7 @@ Darwin)
 Linux)
 	alias ls='ls --color=auto'
 	alias la='ls -la --color=auto'
+	alias le='exa -lha --icons'
 	;;
 
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
