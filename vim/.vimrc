@@ -26,7 +26,7 @@ Plug 'tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'vim-airline/vim-airline' " Status bar
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ap/vim-css-color'
-Plug 'neoclide/coc.nvim' " Auto Completion
+" Plug 'neoclide/coc.nvim' " Auto Completion
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf.vim' " Fuzzy Finder
 Plug 'junegunn/fzf'
@@ -55,7 +55,7 @@ let g:netrw_localcopydircmd='cp -r'
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+" nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
 nnoremap <silent> <C-p> :Files<CR>
 
 set termwinsize=15x0
@@ -76,7 +76,7 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
 
-let g:coc_node_path="$HOME/.local/share/fnm/node-versions/v16.19.0/installation/bin/node"
+" let g:coc_node_path="$HOME/.local/share/fnm/node-versions/v16.19.0/installation/bin/node"
 
 " --- Just Some Notes ---
 " :PlugClean :PlugInstall :UpdateRemotePlugins
@@ -110,14 +110,14 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-inoremap <silent><expr> <TAB>
-	\ coc#pum#visible() ? coc#pum#next(1) :
-	\ CheckBackspace() ? "\<TAB>" :
-	\ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"	\ coc#pum#visible() ? coc#pum#next(1) :
+"	\ CheckBackspace() ? "\<TAB>" :
+"	\ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
-	\ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() :
+"	\ "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 function CheckBackspace() abort
 	let col = col('.') - 1
