@@ -5,3 +5,5 @@ export SDKMAN_DIR="/home/sergio-pereira/.sdkman"
 # fnm
 export PATH="/home/sergio-pereira/.local/share/fnm:$PATH"
 eval "`fnm env`"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

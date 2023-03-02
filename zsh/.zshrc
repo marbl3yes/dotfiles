@@ -75,6 +75,7 @@ plugins=(
 	zsh-completions
 	zsh-syntax-highlighting
 	git
+	fzf
 	node
 	npm
 	yarn
@@ -124,7 +125,6 @@ export ZDOTDIR=$HOME/.config/zsh
 autoload -Uz colors && colors
 
 # fnm
-export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
 # Useful functions
@@ -135,11 +135,27 @@ zsh_add_file "zsh-exports"
 zsh_add_file "zsh-aliases"
 
 # FZF
-# TODO update for mac
-[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+case "$(uname -s)" in
+
+Darwin)
+	[ -f /opt/homebrew/bin/fzf/completion.zsh ] && source /opt/homebrew/bin/fzf/completion.zsh
+	[ -f /opt/homebrew/bin/fzf/key-bindings.zsh ] && source /opt/homebrew/bin/fzf/key-bindings.zsh
+	;;
+
+Linux)
+	[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+	[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+	;;
+
+CYGWIN* | MINGW32* | MSYS* | MINGW*)
+	# echo 'MS Windows'
+	;;
+
+*)
+	# echo 'Other OS'
+	;;
+esac
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
