@@ -140,6 +140,7 @@ case "$(uname -s)" in
 Darwin)
 	[ -f /opt/homebrew/bin/fzf/completion.zsh ] && source /opt/homebrew/bin/fzf/completion.zsh
 	[ -f /opt/homebrew/bin/fzf/key-bindings.zsh ] && source /opt/homebrew/bin/fzf/key-bindings.zsh
+  export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 	;;
 
 Linux)
@@ -164,4 +165,3 @@ compinit
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
