@@ -116,16 +116,10 @@ source $ZSH/oh-my-zsh.sh
 # Add VSCode terminal configuration
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
-# Add starship prompt
-eval "$(starship init zsh)"
-
 export ZDOTDIR=$HOME/.config/zsh
 
 # Colors
 autoload -Uz colors && colors
-
-# fnm
-eval "`fnm env`"
 
 # Useful functions
 source "$ZDOTDIR/zsh-functions"
@@ -133,6 +127,9 @@ source "$ZDOTDIR/zsh-functions"
 # Normal files to source
 zsh_add_file "zsh-exports"
 zsh_add_file "zsh-aliases"
+
+# Add starship prompt
+eval "$(starship init zsh)"
 
 # FZF
 case "$(uname -s)" in
