@@ -6,7 +6,25 @@ export PATH="$HOME/.local/bin":$PATH
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
 export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.fnm:$PATH
+
+# FNM
+case "$(uname -s)" in
+
+Darwin)
+	export PATH=$HOME/.fnm:$PATH
+	;;
+
+Linux)
+	export PATH=$HOME/.local/share/fnm:$PATH
+	;;
+
+CYGWIN* | MINGW32* | MSYS* | MINGW*)
+	;;
+
+*)
+	;;
+esac
+
 export PATH="$HOME/.local/share/neovim/bin":$PATH
 #export PATH="$PATH:./node_modules/.bin"
 eval "$(fnm env)"
