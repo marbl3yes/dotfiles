@@ -1,17 +1,18 @@
 return {
-  -- add symbols-outline
   {
-    -- "ixru/nvim-markdown",
-    -- cmd = "",
-    -- keys = { { "<leader>nn", "<cmd>NoNeckPain<cr>", desc = "[N]o [N]eckpain" } },
+    "folke/which-key.nvim",
+    opts = {
+      defaults = {
+        ["<leader>m"] = { name = "+markdown" },
+      },
+    },
   },
-
   {
     "iamcco/markdown-preview.nvim",
-    setup = {
-      run = function()
-        vim.fn["mkdp#util#install"]()
-      end,
+    build = "cd app && npm install",
+    ft = "markdown",
+    keys = {
+      { "<Leader>mp", "<Plug>MarkdownPreview", desc = "Markdown Preview" },
     },
   },
 }
