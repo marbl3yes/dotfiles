@@ -26,3 +26,10 @@ vim.api.nvim_create_autocmd("filetype", {
   pattern = { "gitcommit", "markdown", "pandoc" },
   command = "set nospell",
 })
+
+vim.api.nvim_create_autocmd("filetype", {
+  pattern = { "json", "jsonc", "markdown" },
+  callback = function()
+    vim.wo.conceallevel = 0
+  end,
+})
