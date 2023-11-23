@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- added to disable spelling
 vim.api.nvim_create_autocmd("FileType", {
   -- group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown", "pandoc" },
+  pattern = { "gitcommit", "pandoc" },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = false
@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("filetype", {
   -- group = augroup("wrap_spell"),
-  pattern = { "gitcommit", "markdown", "pandoc" },
+  pattern = { "gitcommit", "pandoc" },
   command = "set nospell",
 })
 
