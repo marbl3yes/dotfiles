@@ -78,6 +78,7 @@ plugins=(
 	zsh-syntax-highlighting
 	git
 	fzf
+  fzf-tab
 	node
 	npm
 	yarn
@@ -133,6 +134,9 @@ zsh_add_file "zsh-aliases"
 # Add starship prompt
 eval "$(starship init zsh)"
 
+# Enable zoxide, override `cd`
+eval "$(zoxide init zsh --cmd cd)"
+
 # FZF
 case "$(uname -s)" in
 
@@ -160,6 +164,68 @@ esac
 [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
+
+# FZF tab
+FZF_TAB_PLUGIN=$HOME/.oh-my-zsh/custom/plugins/fzf-tab/fzf-tab.plugin.zsh
+if test -f "$FZF_TAB_PLUGIN"; then
+  source $FZF_TAB_PLUGIN
+else
+  echo "fzf-tab is not installed, install it from https://github.com/Aloxaf/fzf-tab and set FZF_TAB_PLUGIN"
+fi
+
+# Enable zsh history substring search
+source $HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+_fzf_compgen_path() {
+  fd --hidden  --exclude .git "$1" .
+}
+
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git "$1" .
+}
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in  
+    cd) fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}" "@" ;;
+    ssh) fzf --preview 'dig {}' "$@" ;;
+    cat|bat) fzf --preview 'bat -n --color=always {}' "$@" ;;
+    vi) fzf --preview 'vi {}' "$@" ;;
+    *) fzf --preview '$HOME/.config/zsh/fzf-preview.sh {}' "$@" ;;
+  esac
+}
+
+# Enable history navigation using the up and down arrows
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Enable using fzf preview with eza when using tab completion `cd`
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:*' fzf-preview '$HOME/.config/zsh/fzf-preview.sh $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always --icons=always --git $realpath | head -200'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+# Configure zsh history
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=2000
+export SAVEHIST=$HISTSIZE
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+setopt hist_ignore_space
+
+# Tool exports
+export BAT_THEME="Monokai Extended Bright"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

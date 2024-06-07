@@ -1,5 +1,6 @@
 #!/bin/sh
 
+alias cat=bat
 alias lg='lazygit'
 alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias nvimrc='nvim ~/.config/nvim/'
@@ -30,14 +31,11 @@ case "$(uname -s)" in
 
 Darwin)
 	# echo 'Mac OS X'
-	alias ls='ls -G'
-	alias le='exa -lha --icons'
+	alias ls='eza -lha --icons'
 	;;
 
 Linux)
-	alias ls='ls --color=auto'
-	alias la='ls -la --color=auto'
-	alias le='exa -lha --icons'
+	alias ls='eza -lha --icons'
 	;;
 
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
