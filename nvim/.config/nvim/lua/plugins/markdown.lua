@@ -1,10 +1,9 @@
 return {
   {
     "folke/which-key.nvim",
-    opts = {
-      defaults = {
-        ["<leader>m"] = { name = "+markdown" },
-      },
+    opts = {},
+    keys = {
+      { "<leader>m", "+markdown", desc = "Markdown" },
     },
   },
   {
