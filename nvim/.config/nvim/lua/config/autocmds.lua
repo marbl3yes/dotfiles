@@ -3,12 +3,12 @@
 -- Add any additional autocmds here
 --
 -- disable completion on markdown files by default
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    require("cmp").setup({ enabled = false })
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "gitcommit", "markdown" },
+--   callback = function()
+--     require("cmp").setup({ enabled = false })
+--   end,
+-- })
 
 -- wrap and check for spell in text filetypes
 -- added to disable spelling
