@@ -180,3 +180,4 @@ nmap <leader>gb <Action>(Forward)
 map <leader>gc <Action>(CheckinProject)
 map <leader>gs <Action>(ActivateVersionControlToolWindow)
 map <leader>gb <Action>(Git.Branches)
+set ideajoin
