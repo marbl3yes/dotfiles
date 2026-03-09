@@ -217,6 +217,7 @@ setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
 setopt hist_ignore_space
+setopt rmstarsilent
 
 # Tool exports
 export BAT_THEME="Monokai Extended Bright"
@@ -227,6 +228,12 @@ export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
+# Autoload node version
+source $HOME/.config/auto_node_version_switch.sh
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Added by Antigravity
+export PATH="/Users/sergio.pereira/.antigravity/antigravity/bin:$PATH"
