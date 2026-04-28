@@ -231,8 +231,9 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 # Opencode variables
 export EDITOR=nvim
 
-# OpenRouter variables
+# API keys variables
 # export OPENROUTER_API_KEY=$(security find-generic-password -a "$USER" -s "openrouter_api_key" -w)
+# export GOOGLE_API_KEY=$(security find-generic-password -a "$USER" -s "google_aistudio_api_key" -w)
 
 # Autoload node version
 source $HOME/.config/auto_node_version_switch.sh
