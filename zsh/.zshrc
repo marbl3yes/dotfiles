@@ -228,6 +228,12 @@ export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
+# Opencode variables
+export EDITOR=nvim
+
+# OpenRouter variables
+# export OPENROUTER_API_KEY=$(security find-generic-password -a "$USER" -s "openrouter_api_key" -w)
+
 # Autoload node version
 source $HOME/.config/auto_node_version_switch.sh
 
