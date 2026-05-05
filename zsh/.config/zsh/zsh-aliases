@@ -6,7 +6,6 @@ alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git
 alias nvimrc='nvim ~/.config/nvim/'
 alias vi='nvim'
 # alias vim='nvim'
-alias ag='antigravity'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
