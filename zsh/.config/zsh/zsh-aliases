@@ -32,11 +32,11 @@ case "$(uname -s)" in
 
 Darwin)
 	# echo 'Mac OS X'
-	alias ls='eza -lha --icons --hyperlink'
+	alias ll='eza -lha --icons --hyperlink'
 	;;
 
 Linux)
-	alias ls='eza -lha --icons --hyperlink'
+	alias ll='eza -lha --icons --hyperlink'
 	;;
 
 CYGWIN* | MINGW32* | MSYS* | MINGW*)

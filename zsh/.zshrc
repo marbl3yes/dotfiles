@@ -244,3 +244,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Added by Antigravity
 export PATH="/Users/sergio.pereira/.antigravity/antigravity/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/sergio.pereira/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Added by Antigravity CLI installer
+export PATH="/Users/sergio.pereira/.local/bin:$PATH"
