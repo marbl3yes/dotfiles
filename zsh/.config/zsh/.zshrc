@@ -255,3 +255,6 @@ export PATH="/Users/sergio.pereira/.local/bin:$PATH"
 export PATH="$PATH:/Users/sergio.pereira/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# Pi
+export PATH="/Users/sergio.pereira/.local/share/fnm/node-versions/v24.15.0/installation/bin:$PATH"
