@@ -6,9 +6,9 @@ REPO ?= gh:marbl3yes/dotfiles
 setup:
 	@command -v chezmoi >/dev/null 2>&1 || sh -c "$$(curl -fsLS get.chezmoi.io)" -- init --apply $(REPO)
 
-# Stage 1: link config files only
+# Stage 1: link config files only (no run_once scripts)
 link:
-	chezmoi apply --include files
+	chezmoi apply --exclude scripts
 
 # Stage 2: run install/defaults scripts only
 install:
