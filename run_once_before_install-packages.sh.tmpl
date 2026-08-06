@@ -1,0 +1,50 @@
+#!/bin/bash
+set -euo pipefail
+
+case "{{ .chezmoi.os }}" in
+  darwin)
+    brew install fzf fd bat eza zoxide starship lazygit neovim fnm
+    brew install zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+    brew install --cask wezterm
+    ;;
+  linux)
+    sudo apt update
+    sudo apt install -y zsh fzf fd-find bat eza zoxide starship lazygit
+    sudo chsh -s "$(command -v zsh)" "$USER"
+
+    # Ubuntu names the binaries fd/fdfind and bat/batcat — provide the expected names
+    mkdir -p "$HOME/.local/bin"
+    ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
+    ln -sf "$(command -v batcat)" "$HOME/.local/bin/bat"
+
+    # fnm is not packaged in Ubuntu — install the official script
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+
+    # Neovim: apt's version is too old for LazyVim, install the official release
+    case "$(uname -m)" in
+      x86_64)  nvim_url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz" ;;
+      aarch64) nvim_url="https://github.com/neovim/neovim/releases/download/stable/nvim-linux-aarch64.tar.gz" ;;
+    esac
+    curl -fsSL "$nvim_url" -o /tmp/nvim.tar.gz
+    nvim_dir="$(tar tzf /tmp/nvim.tar.gz | sed -n '1s#/.*##p')"
+    sudo tar xf /tmp/nvim.tar.gz -C /opt
+    sudo ln -sf "/opt/$nvim_dir/bin/nvim" /usr/local/bin/nvim
+
+    # Oh-my-zsh + the plugins referenced by .zshrc
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+      git clone https://github.com/zsh-users/zsh-completions "$HOME/.oh-my-zsh/custom/plugins/zsh-completions"
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+      git clone https://github.com/Aloxaf/fzf-tab "$HOME/.oh-my-zsh/custom/plugins/fzf-tab"
+      git clone https://github.com/zsh-users/zsh-history-substring-search "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search"
+    fi
+{{ if ne .role "server" }}
+    # GUI terminal — linux desktop only, skipped on servers
+    curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+    echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+    sudo apt update
+    sudo apt install -y wezterm
+{{ end }}
+    ;;
+esac
