@@ -201,7 +201,7 @@ Rationale: `~/.zshenv` does not exist on the Mac, so `ZDOTDIR` defaults to `$HOM
 - [ ] **Step 4: Create `dot_config/zsh/zsh-local.tmpl`**
 
 ```text
-{{- if eq .chezmoi.hostname "Sergios-Laptop.local" }}
+{{- if eq .chezmoi.hostname "Sergios-Laptop" }}
 # macOS: Antigravity, LM Studio, pinned fnm node version
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"

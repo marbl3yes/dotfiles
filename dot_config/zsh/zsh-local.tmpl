@@ -1,0 +1,11 @@
+{{- if eq .chezmoi.hostname "Sergios-Laptop" }}
+# macOS: Antigravity, LM Studio, pinned fnm node version
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="$PATH:$HOME/.lmstudio/bin"
+export PATH="$HOME/.local/share/fnm/node-versions/v24.15.0/installation/bin:$PATH"
+{{- end }}
+
+{{- if eq .chezmoi.hostname "<ubuntu-server-hostname>" }}
+# Ubuntu server: machine-specific exports go here
+{{- end }}
