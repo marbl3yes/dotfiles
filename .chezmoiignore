@@ -1,0 +1,20 @@
+README.md
+Makefile
+docs/**
+
+# LazyVim ships its own README/LICENSE — don't copy them to ~/.config/nvim
+dot_config/nvim/README.md
+dot_config/nvim/LICENSE
+
+# i3/i3status/picom/dunst are Linux-desktop-only
+{{ if ne .chezmoi.os "linux" }}
+dot_config/i3/**
+dot_config/i3status/**
+dot_config/picom/**
+dot_config/dunst/**
+{{ end }}
+
+# wezterm is not installed on servers
+{{ if eq .role "server" }}
+dot_config/wezterm/**
+{{ end }}
