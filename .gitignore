@@ -1,17 +1,17 @@
 .DS_Store
 
-# ZSH
-.zshrc.local
+# Zsh
 .zsh_history
+.zcompdump
 .zcompdump-*
 
 # Vim
 Session.vim
-.vim/bundle/
-.vimrc_sample
-.vim/ftdetect/Dockerfile.vim
-.vim/syntax/Dockerfile.vim
-.vim/snippets/
+dot_vim/plugged/
 
-# NeoVim
-nvim/.config/nvim/plugin/packer_compiled.lua
+# Neovim
+dot_config/nvim/lazy-lock.json
+dot_config/nvim/plugin/packer_compiled.lua
+
+# Lazygit
+dot_config/lazygit/state.yml
