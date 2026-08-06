@@ -30,7 +30,8 @@ differences, so a fresh Mac or Ubuntu server can be provisioned reproducibly.
    restored automatically by `chezmoi init --apply`. Secrets stay out of git
    (macOS Keychain pattern already present in `.zshrc`).
 4. **Server:** GUI configs (wezterm) are skipped when `role == "server"`;
-   i3/dunst are skipped on anything that is not a Linux desktop.
+   i3/dunst are skipped on anything that is not a Linux desktop. Wezterm is
+   installed and configured on macOS and on Linux desktops.
 
 ## Machine model
 
@@ -58,9 +59,9 @@ Result:
 
 | Machine | OS | Role | Configs applied |
 |---|---|---|---|
-| Mac | darwin | desktop | shared tools only (no i3/dunst/wezterm extras) |
+| Mac | darwin | desktop | shared tools + wezterm (no i3/dunst) |
 | Ubuntu server | linux | server | shared tools, no wezterm |
-| (future) Linux desktop | linux | desktop | shared tools + i3 + dunst + wezterm |
+| (future) Linux desktop | linux | desktop | shared tools + wezterm + i3 + dunst |
 
 ## Repo layout
 
@@ -93,7 +94,7 @@ dotfiles/                          (chezmoi source state)
 │   ├── nvim/**                    # ported as-is
 │   ├── starship.toml
 │   ├── lazygit/config.yml
-│   ├── wezterm/wezterm.lua        # linux-desktop only (ignored on server)
+│   ├── wezterm/wezterm.lua        # macOS + Linux desktop (ignored on server)
 │   ├── auto_node_version_switch.sh
 │   ├── i3/**                      # linux-desktop only
 │   └── dunst/dunstrc              # linux-desktop only
@@ -182,17 +183,21 @@ set -euo pipefail
 
 case "{{ .chezmoi.os }}" in
   darwin)
-    brew install fzf fd bat eza zoxide starship lazygit neovim fnm zsh-autosuggestions zsh-completions zsh-syntax-highlighting
+    brew install fzf fd bat eza zoxide starship lazygit neovim fnm wezterm zsh-autosuggestions zsh-completions zsh-syntax-highlighting
     ;;
   linux)
     sudo apt update
     sudo apt install -y zsh fzf fd-find bat eza zoxide starship nvim fnm
+    {{- if ne .role "server" }}
+    # GUI terminal — linux desktop only, skipped on servers
+    sudo apt install -y wezterm
+    {{- end }}
     ;;
 esac
 ```
 
 (Exact package lists finalized during implementation; brew/apt cask/package names
-for nvim and lazygit may differ and are handled explicitly.)
+for nvim, lazygit, and wezterm-on-Linux may differ and are handled explicitly.)
 
 **`run_once_after_macos-defaults.sh.tmpl`** — macOS-only tweaks:
 
@@ -263,6 +268,7 @@ list, and machine-local hostname blocks all come from git.
 
 - `chezmoi apply` is idempotent on the Mac; `chezmoi diff` shows no drift after
   the initial apply.
+- On the Mac, wezterm is installed via brew and its config is applied.
 - A fresh Ubuntu server provisions shared configs with the two-command flow, with
   no i3/dunst/wezterm applied, and machine-local exports present for its hostname.
 - `fresh_install.sh`, Stow files (`.stow-local-ignore`), and Stow symlinks are gone.
