@@ -1,0 +1,3 @@
+# Delegate to the main zshrc. ZDOTDIR points here, so shells that inherit the
+# exported ZDOTDIR read this file and load the real config from $HOME.
+[[ -f "$HOME/.zshrc" ]] && source "$HOME/.zshrc"

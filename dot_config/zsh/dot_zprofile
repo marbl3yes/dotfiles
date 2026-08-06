@@ -1,0 +1,4 @@
+# ZDOTDIR lives here, so login shells that inherit the exported ZDOTDIR read
+# this file instead of $HOME/.zprofile. Delegate to the home file so brew,
+# python, and other login-shell setup is preserved.
+[[ -f "$HOME/.zprofile" ]] && source "$HOME/.zprofile"
