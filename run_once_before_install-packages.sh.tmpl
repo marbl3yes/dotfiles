@@ -3,13 +3,13 @@ set -euo pipefail
 
 case "{{ .chezmoi.os }}" in
   darwin)
-    brew install fzf fd bat eza zoxide starship lazygit neovim fnm
+    brew install fzf fd bat eza zoxide starship lazygit neovim fnm ripgrep git-delta
     brew install zsh-autosuggestions zsh-completions zsh-syntax-highlighting
-    brew install --cask wezterm
+    brew install --cask ghostty
     ;;
   linux)
     sudo apt update
-    sudo apt install -y zsh fzf fd-find bat eza zoxide starship lazygit
+    sudo apt install -y zsh fzf fd-find bat eza zoxide starship lazygit ripgrep git-delta
     sudo chsh -s "$(command -v zsh)" "$USER"
 
     # Ubuntu names the binaries fd/fdfind and bat/batcat — provide the expected names
@@ -40,11 +40,30 @@ case "{{ .chezmoi.os }}" in
       git clone https://github.com/zsh-users/zsh-history-substring-search "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search"
     fi
 {{ if ne .role "server" }}
-    # GUI terminal — linux desktop only, skipped on servers
-    curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
-    echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-    sudo apt update
-    sudo apt install -y wezterm
+    # Ubuntu 26.04+ packages Ghostty; older releases need a separate installer.
+    if apt-cache show ghostty >/dev/null 2>&1; then
+      sudo apt install -y ghostty
+    else
+      printf 'Ghostty is unavailable in this Ubuntu repository. See https://ghostty.org/docs/install/binary\n'
+    fi
 {{ end }}
     ;;
 esac
+
+# Herdr is optional. Ask only when it is missing and a terminal is available.
+if ! command -v herdr >/dev/null 2>&1; then
+  if [ -t 0 ] || [ -t 1 ]; then
+    printf 'Install Herdr? [y/N] ' >/dev/tty
+    IFS= read -r install_herdr </dev/tty || install_herdr=''
+    case "$install_herdr" in
+      y|Y|yes|YES)
+        case "{{ .chezmoi.os }}" in
+          darwin) brew install herdr ;;
+          linux) curl -fsSL https://herdr.dev/install.sh | sh ;;
+        esac
+        ;;
+    esac
+  else
+    printf 'Herdr was not installed. Install later from https://herdr.dev/docs/install/\n'
+  fi
+fi

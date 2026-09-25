@@ -14,7 +14,7 @@ docs/**
 .config/dunst/**
 {{ end }}
 
-# wezterm is not installed on servers
+# Ghostty is a desktop terminal
 {{ if eq .role "server" }}
-.config/wezterm/**
+.config/ghostty/**
 {{ end }}

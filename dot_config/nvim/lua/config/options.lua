@@ -1,9 +1,17 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- Closer to VS Code while browsing: absolute line numbers, mouse, confirm on quit.
+vim.opt.relativenumber = false
+vim.opt.mouse = "a"
+vim.opt.confirm = true
+vim.opt.showtabline = 2
 
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
+-- Wrap long lines in the editor pane instead of horizontal scroll.
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 
+-- Never open a directory listing in the main pane (neo-tree owns the tree).
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Add spelling verification options
 vim.opt.spelllang = { "en", "pt" }

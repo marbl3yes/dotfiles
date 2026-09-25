@@ -11,10 +11,16 @@ make install
 
 Answer the prompt with `desktop` or `server`. Configs select themselves per OS and role:
 
-- shared: zsh, nvim, starship, lazygit, vim, ideavim, auto-scripts
-- macOS only: wezterm (also on Linux desktops), macOS `defaults` tweaks
+- shared: zsh, nvim, starship, lazygit, Herdr config, vim, ideavim, auto-scripts
+- desktops: Ghostty (Homebrew cask on macOS; Ubuntu package when available)
+- macOS only: macOS `defaults` tweaks
 - Linux desktop only: i3, i3status, picom, dunst
-- servers: shared tools only (no wezterm)
+- servers: shared tools only (no Ghostty)
+
+The install script asks before installing Herdr when it is missing. If the script
+runs without a terminal, it prints the [manual install instructions](https://herdr.dev/docs/install/).
+The Herdr config includes shortcuts for optional plugins; install those separately
+in Herdr if you want the shortcuts to work.
 
 ## Existing machine
 
