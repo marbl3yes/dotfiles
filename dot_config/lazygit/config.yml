@@ -23,7 +23,7 @@ gui:
   sidePanels:
     - [status]
     - [files]
-    - [stash, branches, commits, remote-branches, tags]
+    - [stash, branches, worktrees, commits, remotes, tags]
 
   # One color per author. Agents commit on their own prefix.
   branchColorPatterns:
