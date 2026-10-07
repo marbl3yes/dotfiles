@@ -25,16 +25,17 @@ gui:
     - [files]
     - [stash, branches, worktrees, commits, remotes, tags]
 
-  # One color per author. Agents commit on their own prefix.
-  branchColorPatterns:
-    "^me/": "#5fd7ff"
-    "^codex/": "#c678dd"
-    "^claude/": "#e5c07b"
-    "^grok/": "#00e5a8"
-    "^cursor/": "#61afef"
-    "^feat/": "#98c379"
-    "^fix/": "#e06c75"
-    "^main$": "#98c379"
+  theme:
+    # One color per author. Agents commit on their own prefix.
+    branchColorPatterns:
+      "^me/": "#5fd7ff"
+      "^codex/": "#c678dd"
+      "^claude/": "#e5c07b"
+      "^grok/": "#00e5a8"
+      "^cursor/": "#61afef"
+      "^feat/": "#98c379"
+      "^fix/": "#e06c75"
+      "^main$": "#98c379"
 
 git:
   log:
